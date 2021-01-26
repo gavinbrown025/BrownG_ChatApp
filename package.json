@@ -1,0 +1,16 @@
+{
+  "name": "gebchatapp",
+  "version": "1.0.0",
+  "description": "review the node garb",
+  "main": "app.js",
+  "scripts": {
+    "start-dev": "browser-sync start --proxy 'localhost:5050' --files 'index.html' 'public'",
+    "start": "nodemon app"
+  },
+  "keywords": [],
+  "author": "Gavin Brown",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
