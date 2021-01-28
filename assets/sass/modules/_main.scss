@@ -1,7 +1,35 @@
 body {
     background: $main-bg-color;
-    color: $white;
+    color: $black;
+    font-family:$header-font;
+    display: grid;
+    place-items: center;
+    height: 100vh;
 }
 
+a {color:$black;}
+
+h1,h2 { font-size: $header-size;}
+
+p{font-size: $text-size; font-family: $text-font;}
+
+input {
+    font-size: $text-size;
+    font-family: $text-font;
+    border-radius: $rad;
+    padding: .2em;
+    &:focus{outline: none;}
+}
+
+button{  //! reset
+    font-size:100%;
+    font-family:inherit;
+    border:none;
+    padding:0;
+}
+
+
+
+#app{}
 
 
