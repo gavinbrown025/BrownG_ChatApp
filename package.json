@@ -5,7 +5,11 @@
   "main": "app.js",
   "scripts": {
     "dev": "browser-sync start --proxy 'localhost:5050' --files 'index.html' 'public'",
-    "start": "nodemon app"
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavinbrown025/BrownG_ChatApp.git"
   },
   "keywords": [],
   "author": "Gavin Brown",
