@@ -4,8 +4,9 @@
   "description": "review the node garb",
   "main": "app.js",
   "scripts": {
-    "start-dev": "browser-sync start --proxy 'localhost:5050' --files 'index.html' 'public'",
-    "start": "nodemon app"
+    "ui": "browser-sync start --proxy 'localhost:5050' --files 'index.html' 'public'",
+    "dev": "nodemon app",
+    "start": "node app"
   },
   "keywords": [],
   "author": "Gavin Brown",

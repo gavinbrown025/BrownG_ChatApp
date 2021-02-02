@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const mesenger = require('socket.io')();
+const messenger = require('socket.io')();
 
 const app = express();
 app.use(express.static("public"));
@@ -22,3 +22,11 @@ const server = app.listen(port, () => {
 });
 
 messenger.attach(server);
+
+messenger.on('connection',(socket) => {
+    console.log(`a user connected: ${socket.id}`);
+
+    socket.on('disconnect', (socket) => {
+        console.log('a user disconnected');
+    })
+});
