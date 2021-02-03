@@ -23,10 +23,20 @@ const server = app.listen(port, () => {
 
 messenger.attach(server);
 
-messenger.on('connection',(socket) => {
+messenger.on('connection', (socket) => {
+
     console.log(`a user connected: ${socket.id}`);
+
+    //*send the user their id
+    socket.emit('connected', {sID: `${socket.id}`, message: 'new connection'});
+
+    socket.on('chatmessage', function(msg) {
+        console.log(msg);
+        messenger.emit('message', {id: socket.id, message: msg});
+    });
 
     socket.on('disconnect', (socket) => {
         console.log('a user disconnected');
     })
+
 });

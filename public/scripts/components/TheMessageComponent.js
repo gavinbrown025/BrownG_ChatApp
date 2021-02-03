@@ -1,10 +1,19 @@
 export default {
-    props: ['msg'],
+    name: "ChatMessage",
+
+    props: ['msg', 'socketid'],
 
     template:
-    `
-    <div>
-        <p>This is a Message</p>
+    `<div class="new-message" :class="{ 'my-message' : matchedID }">
+        <h2>This is a Message</h2>
+        <p>{{msg.message.name}} says:</p>
+        <p>{{msg.message.content}}</p>
     </div>
-    `
+    `,
+
+    data: function (){
+        return {
+            matchedID: this.socketid == this.msg.id
+        }
+    }
 }
