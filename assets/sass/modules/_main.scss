@@ -1,6 +1,6 @@
 body {
-    background: $main-bg-color;
-    color: $black;
+    background: $white;
+    color: $white;
     font-family:$header-font;
     display: grid;
     place-items: center;
@@ -14,10 +14,9 @@ h1,h2 { font-size: $header-size;}
 p{font-size: $text-size; font-family: $text-font;}
 
 input {
-    font-size: $text-size;
+    font-size: 1.2em;
     font-family: $text-font;
     border-radius: $rad;
-    padding: .2em;
     &:focus{outline: none;}
 }
 

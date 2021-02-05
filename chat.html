@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,12 @@
 
     <title>Rock Talk | Chat</title>
 </head>
+
 <body>
     <main id="app">
         <section class="chat-con">
             <div class="chat-header">
                 <h2>Welcome To RockTalk</h2>
-                <p>just chat away!</p>
                 <a class="chat-btn" href="index.html">Leave</a>
             </div>
 
@@ -32,24 +33,24 @@
                     </div>
                 </div>
 
-                <div class="message-board"></div>
+                <section class="message-board">
+                    <newmessage
+                        v-for="message in messages"
+                        :msg="message"
+                        :socketid="socketID">
+                    </newmessage>
+                </section>
 
             </div>
-            <form id="chat-form" action=""> <!-- !v-on:submit.prevent="sendMessage" -->
-                <input
-                    id="msg"
-                    type="text"
-                    placeholder="enter message"
-                    autocomplete="off"
-                    required
-                />
-
-                <button class="chat-btn" href="chat.html">send</a>
+            <form @submit.prevent="dispatchMessage" id="chat-form" action="">
+                <input v-model="message" id="msg" type="text" placeholder="enter message" autocomplete="off" required />
+                <button class="chat-btn" href="chat.html" type="submit">Send</button>
             </form>
         </section>
     </main>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="js/main.js"></script>
+    <script src="scripts/main.js" defer type="module"></script>
 </body>
+
 </html>

@@ -1,69 +1,46 @@
-//*trevor
-// const express = require('express');
-// const path = require('path');
 
-// const mesenger = require('socket.io')();
-
-// const app = express();
-// app.use(express.static("public"));
-
-
-// const port = process.env.PORT || 5050;
-
-// app.get("/", (req,res) => {
-//     res.sendFile(path.join(__dirname, "index.html"));
-// });
-
-// app.get("/chat", (req, res) => {
-//     res.sendFile(path.join(__dirname, "chat.html"));
-// });
-
-// const server = app.listen(port, () => {
-//     console.log(`app is running on ${port}`);
-// });
-
-// messenger.attach(server);
-
-//*  Traversy
-
-const path = require('path');
-const http = require('http');
 const express = require('express');
-const socketio = require('socket.io');
+const path = require('path');
+const messenger = require('socket.io')();
 
 const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 
-//* when client connects
-io.on('connection', socket => {
-    console.log('new WS connection..');
+app.use(express.static("public"));
 
-    //* welcome current connecter
-    socket.emit('message', 'Welcome to chat');
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 
-    //* broadCast when user connects but not to the connector
-    socket.broadcast.emit('message', 'a user has joined the chat');
+app.get("/chat", (req, res) => {
+    res.sendFile(path.join(__dirname, "chat.html"));
+});
 
-    //* to everyone
-    io.emit();
 
-    //*when someone leaves
-    socket.on('disconnect', () => {
-        io.emit('message', 'a user has left the chat');
+const port = process.env.PORT || 5050;
+const server = app.listen(port, () => console.log(`app is running on ${port}`));
+
+
+messenger.attach(server);
+messenger.on('connection', socket => {
+
+    console.log(`${socket.id} has connected`);
+    //! broadCast when user connects but not to the connector
+    socket.broadcast.emit('message', `${socket.id} connected`);
+
+    //*send the user their id
+    socket.emit('connected', { sID: `${socket.id}`, message: 'new connection' });
+
+
+    socket.on('chatmessage', function (msg) {
+        console.log(msg);
+        messenger.emit('message', { id: socket.id, message: msg });
     });
 
-    socket.on('chatMessage', (msg) => {
-        io.emit('message', msg)
+    socket.on('disconnect', (socket) => {
+        console.log('a user disconnected');
     })
 
 });
 
-
-const PORT = 5050 || process.env.PORT;
-
-server.listen(PORT, () => console.log(`app is running on ${PORT}`));
 
