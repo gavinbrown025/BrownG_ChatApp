@@ -4,16 +4,15 @@
   "description": "review the node garb",
   "main": "app.js",
   "scripts": {
-    "dev": "browser-sync start --proxy 'localhost:5050' --files 'index.html' 'public'",
-    "start": "nodemon app"
+    "ui": "browser-sync start --proxy 'localhost:5050' --files 'index.html' 'public'",
+    "dev": "nodemon app",
+    "start": "node app"
   },
   "keywords": [],
   "author": "Gavin Brown",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "moment": "^2.29.1",
-    "socket.io": "^3.1.0",
-    "vue": "^2.6.12"
+    "socket.io": "^3.1.0"
   }
 }
