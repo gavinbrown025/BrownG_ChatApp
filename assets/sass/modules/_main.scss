@@ -2,9 +2,17 @@ body {
     background: $white;
     color: $white;
     font-family:$header-font;
-    display: grid;
-    place-items: center;
     height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+main {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 a {color:$black;}
@@ -27,8 +35,5 @@ button{  //! reset
     padding:0;
 }
 
-
-
-#app{}
 
 

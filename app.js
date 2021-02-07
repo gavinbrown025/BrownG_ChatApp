@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const messenger = require('socket.io')();
+const moment = require('moment');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get("/chat", (req, res) => {
 });
 
 
+
 const port = process.env.PORT || 5050;
 const server = app.listen(port, () => console.log(`app is running on ${port}`));
 
@@ -26,15 +28,15 @@ messenger.on('connection', socket => {
 
     console.log(`${socket.id} has connected`);
     //! broadCast when user connects but not to the connector
-    socket.broadcast.emit('message', `${socket.id} connected`);
+    //socket.emit('connected', socket.id);
 
     //*send the user their id
-    socket.emit('connected', { sID: `${socket.id}`, message: 'new connection' });
+    socket.emit('connected', { sID: socket.id, message: 'has joined the chat' });
 
 
     socket.on('chatmessage', function (msg) {
         console.log(msg);
-        messenger.emit('message', { id: socket.id, message: msg });
+        messenger.emit('message', { id: socket.id, message: msg, time: moment().format('h:mm a') });
     });
 
     socket.on('disconnect', (socket) => {
@@ -42,5 +44,3 @@ messenger.on('connection', socket => {
     })
 
 });
-
-

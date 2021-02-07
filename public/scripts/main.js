@@ -3,37 +3,45 @@ import ChatMessage from "./components/TheMessageComponent.js";
 (() => {
 
     const socket = io();
+    const myStorage = window.localStorage;
+    let messageBoard = document.querySelector('.message-board');
 
+    console.log(myStorage);
 
     function setUserId({ sID, message }) {
         vm.socketID = sID;
+        vm.message = message;
+        vm.dispatchMessage(message);
+        vm.setUsername();
     }
 
     function appendMesage(message) {
         vm.messages.push(message);
         vm.message = "";
 
-        let messageBoard = document.querySelector('.message-board');
         messageBoard.scrollTop = messageBoard.scrollHeight;
-
+        //console.log(messageBoard.scrollTop);
+        //console.log(messageBoard.scrollHeight);
     }
 
     const vm = new Vue({
         data: {
             message: "",
             messages: [],
-            nickname: "",
+            users:[],
             username: "",
             socketID: ""
         },
-
-        created: function () {
-            console.log('its a VUE bitch');
+        created: function(){
+            this.username = myStorage.getItem('username');
+            this.users.push(myStorage.getItem('username'));
         },
 
         methods: {
             dispatchMessage() {
-                socket.emit('chatmessage', { content: this.message, name: this.nickname || "Anonymous" });
+                socket.emit('chatmessage', { content: this.message, name: this.username || "Anonymous" });
+            },
+            setUsername() {
             }
         },
 
