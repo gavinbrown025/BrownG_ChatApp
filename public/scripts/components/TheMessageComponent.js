@@ -5,8 +5,9 @@ export default {
 
     template:
         `<div class="new-message" :class="{ 'my-message' : matchedID }">
+            <p class="meta">{{msg.message.name}}</p>
             <p>{{msg.message.content}}</p>
-            <p class="meta">{{msg.message.name}}<span class="time">{{time}} "time"</span></p>
+            <p class="time">{{msg.time}}</p>
         </div>`
     ,
 
@@ -14,5 +15,8 @@ export default {
         return {
             matchedID: this.socketid == this.msg.id
         }
+    },
+    created: function () {
+        //console.log(this.msg);
     }
 }

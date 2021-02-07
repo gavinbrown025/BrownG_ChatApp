@@ -15,7 +15,7 @@
         <section class="chat-con">
             <div class="chat-header">
                 <h2>Welcome To RockTalk</h2>
-                <a class="chat-btn" href="index.html">Leave</a>
+                <a href="/">+</a>
             </div>
 
             <div class="main-chat">
@@ -26,9 +26,8 @@
                     </div>
                     <div class="users">
                         <h3>Users</h3>
-                        <ul>
-                            <li>Dave</li>
-                            <li>John</li>
+                        <ul v-for="user in users">
+                            <li>{{user}}</li>
                         </ul>
                     </div>
                 </div>
@@ -48,6 +47,7 @@
             </form>
         </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.6/qs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="scripts/main.js" defer type="module"></script>
