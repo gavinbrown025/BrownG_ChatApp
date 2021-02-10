@@ -4,24 +4,21 @@ import ChatMessage from "./components/TheMessageComponent.js";
 
     const socket = io();
     const myStorage = window.localStorage;
-    let messageBoard = document.querySelector('.message-board');
-
-    console.log(myStorage);
 
     function setUserId({ sID, message }) {
         vm.socketID = sID;
         vm.message = message;
+        vm.setUser(sID);
         vm.dispatchMessage(message);
-        vm.setUsername();
     }
 
     function appendMesage(message) {
         vm.messages.push(message);
         vm.message = "";
+    }
 
-        messageBoard.scrollTop = messageBoard.scrollHeight;
-        //console.log(messageBoard.scrollTop);
-        //console.log(messageBoard.scrollHeight);
+    function updateUsers(users){
+        vm.users = users;
     }
 
     const vm = new Vue({
@@ -32,16 +29,18 @@ import ChatMessage from "./components/TheMessageComponent.js";
             username: "",
             socketID: ""
         },
-        created: function(){
-            this.username = myStorage.getItem('username');
-            this.users.push(myStorage.getItem('username'));
+        updated: function(){
+            let messageBoard = document.querySelector('.message-board');
+            messageBoard.scrollTop = messageBoard.scrollHeight;
         },
 
         methods: {
             dispatchMessage() {
-                socket.emit('chatmessage', { content: this.message, name: this.username || "Anonymous" });
+                socket.emit('chatmessage', { content: this.message, name: this.username });
             },
-            setUsername() {
+            setUser(sID){
+                this.username = myStorage.getItem('username') || 'Anonymous';
+                socket.emit('userJoin', { sID: this.socketID, name: this.username });
             }
         },
 
@@ -53,5 +52,6 @@ import ChatMessage from "./components/TheMessageComponent.js";
 
     socket.addEventListener('connected', setUserId);
     socket.addEventListener('message', appendMesage);
+    socket.addEventListener('pushUsers', updateUsers);
 
 })();
