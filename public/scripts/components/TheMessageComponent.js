@@ -5,8 +5,8 @@ export default {
 
     template:
         `<div class="new-message" :class="{ 'my-message' : matchedID }">
-            <p class="meta">{{msg.message.name}}</p>
-            <p>{{msg.message.content}}</p>
+            <p class="meta">{{msg.name}}</p>
+            <p>{{msg.message}}</p>
             <p class="time">{{msg.time}}</p>
         </div>`
     ,

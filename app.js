@@ -1,7 +1,7 @@
 
 const express = require('express');
 const path = require('path');
-const messenger = require('socket.io')();
+const io = require('socket.io')();
 const moment = require('moment');
 
 const app = express();
@@ -18,29 +18,43 @@ app.get("/chat", (req, res) => {
 });
 
 
-
 const port = process.env.PORT || 5050;
 const server = app.listen(port, () => console.log(`app is running on ${port}`));
 
 
-messenger.attach(server);
-messenger.on('connection', socket => {
+
+const users = [];
+
+io.attach(server);
+io.on('connection', socket => {
 
     console.log(`${socket.id} has connected`);
-    //! broadCast when user connects but not to the connector
-    //socket.emit('connected', socket.id);
 
     //*send the user their id
     socket.emit('connected', { sID: socket.id, message: 'has joined the chat' });
 
-
-    socket.on('chatmessage', function (msg) {
-        console.log(msg);
-        messenger.emit('message', { id: socket.id, message: msg, time: moment().format('h:mm a') });
+    socket.on('userJoin', user => {
+        users.push(user);
+        io.emit('pushUsers', users);
     });
 
-    socket.on('disconnect', (socket) => {
-        console.log('a user disconnected');
+    socket.on('chatmessage', function (msg) {
+        io.emit('message', { id:socket.id, message:msg.content, name:msg.name, time:moment().format('h:mm a') });
+    });
+
+    socket.on('typing', () => {
+        socket.broadcast.emit('typing', {
+            username: socket.username
+        });
+    });
+
+    socket.on('disconnect', () => {
+        let thisUser = users.filter(user => user.sID == socket.id);
+        io.emit('message', {message: `${thisUser[0].name} has left the chat`, time: moment().format('h:mm a')});
+
+        let remainingUsers = users.filter(user => user.sID !== socket.id);
+        io.emit('pushUsers', remainingUsers);
+
     })
 
 });

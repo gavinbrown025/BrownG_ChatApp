@@ -29,13 +29,13 @@
 
     .chat-info{
         color: $black;
-        background: $highlight;
+        background: $lowlight;
         flex-shrink: 0;
         width: 30%;
         max-width: 200px;
         h3{
             padding: .5em;
-            background-color: rgb(37, 202, 147);
+            background-color: $highlight;
         }
         ul li{
             padding: .25em .5em;
@@ -63,7 +63,7 @@
             box-shadow: $shadow;
             p{display: block;}
 
-            &.my-message{background: #00aaff; align-self: flex-end;}
+            &.my-message{background: $lowlight; align-self: flex-end;}
 
             .meta,.time{font-weight: lighter; font-size: 1em;}
             .time{float: right;}
