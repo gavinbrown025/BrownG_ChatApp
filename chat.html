@@ -5,17 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="css/app.css">
 
-    <title>Rock Talk | Chat</title>
+    <title>ONYX | Chat</title>
 </head>
 
 <body>
     <main id="app">
         <section class="chat-con">
             <div class="chat-header">
-                <h2>Welcome To RockTalk</h2>
-                <a href="/">+</a>
+                <img class="logo" src="images/onyxlogo.png" alt="logo">
+                <a href="/">logout</a>
             </div>
 
             <div class="main-chat">
@@ -43,7 +47,6 @@
             </form>
         </section>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.6/qs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="scripts/main.js" defer type="module"></script>
