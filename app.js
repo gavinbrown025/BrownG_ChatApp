@@ -45,7 +45,7 @@ io.on('connection', socket => {
     socket.on('typing', username => {
         socket.broadcast.emit('typing', username);
     });
-
+ 
     socket.on('disconnect', () => {
         let thisUser = users.filter(user => user.sID == socket.id);
         io.emit('message', {message: `${thisUser[0].name} has left the chat`, time: moment().format('h:mm a')});
