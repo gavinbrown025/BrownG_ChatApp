@@ -23,7 +23,7 @@ const server = app.listen(port, () => console.log(`app is running on ${port}`));
 
 
 
-const users = [];
+let users = [];
 
 io.attach(server);
 io.on('connection', socket => {
@@ -41,20 +41,18 @@ io.on('connection', socket => {
     socket.on('chatmessage', function (msg) {
         io.emit('message', { id:socket.id, message:msg.content, name:msg.name, time:moment().format('h:mm a') });
     });
-
-    socket.on('typing', () => {
-        socket.broadcast.emit('typing', {
-            username: socket.username
-        });
-    });
+//!___________________________________________
+socket.on('typing', () => {
+    socket.broadcast.emit('typing', {  });
+});
+//!___________________________________________
 
     socket.on('disconnect', () => {
         let thisUser = users.filter(user => user.sID == socket.id);
         io.emit('message', {message: `${thisUser[0].name} has left the chat`, time: moment().format('h:mm a')});
 
-        let remainingUsers = users.filter(user => user.sID !== socket.id);
-        io.emit('pushUsers', remainingUsers);
-
+        users = users.filter(user => user.sID !== socket.id);
+        io.emit('pushUsers', users);
     })
 
 });

@@ -8,7 +8,6 @@
     align-content: center;
 
     p{margin: .25em;}
-
 }
 
 .chat-header{
@@ -16,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 1em;
-    a{color: $highlight; transform: rotate(45deg); font-size:3em;}
+    a{color: $highlight; font-size:1em;}
 }
 
 .main-chat{
@@ -26,23 +25,25 @@
     display: flex;
     flex-direction: row;
     border-radius: $rad;
+    overflow: hidden;
 
     .chat-info{
         color: $black;
         background: $lowlight;
         flex-shrink: 0;
         width: 30%;
+        min-width: 120px;
         max-width: 200px;
         h3{
             padding: .5em;
             background-color: $highlight;
+            font-weight: bold;
         }
         ul li{
             padding: .25em .5em;
             &:first-of-type{padding-top:.5em;}
         }
         p{margin:0; padding: .5em;}
-
     }
 
     .message-board{
@@ -61,7 +62,7 @@
             margin: .5em;
             background:$highlight;
             box-shadow: $shadow;
-            p{display: block;}
+            p{display: block; font-weight: bold;}
 
             &.my-message{background: $lowlight; align-self: flex-end;}
 
@@ -80,7 +81,8 @@
 
     input{
         flex-grow: 1;
-        border: solid 2px rgb(201, 201, 201);
+        min-width: 150px;
+        border: solid 2px rgb(200, 200, 200);
         border-radius: $rad;
         padding: .5em;
     }

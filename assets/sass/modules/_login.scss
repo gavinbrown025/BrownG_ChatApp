@@ -1,8 +1,9 @@
 .login-con{
     background: $grey;
     padding: 1em;
-    width:500px;
     border-radius: $rad;
+    text-align: center;
+    min-width: 500px;
 
     h1{
         margin: .5em 0;
@@ -23,14 +24,15 @@
         border-radius: $rad;
         padding:.5em;
         height: 1.2em;
+        min-width: none;
     }
     a{margin:.5em 0;}
+    button{font-size: 1.2em; height:2.5rem}
 }
 
 .chat-btn{
     height: 2.5em;
     float: right;
-    padding:.5em;
     text-align: center;
     border-radius: $rad;
     box-shadow: $shadow;
@@ -40,6 +42,6 @@
     &:hover {color: $white; background: $main-bg-color;}
 }
 
-@media screen and (max-width:532px) {
-    .login-con{width:90%; min-width: 325px;}
+@media screen and (max-width:540px) {
+    .login-con{min-width: unset;}
 }
