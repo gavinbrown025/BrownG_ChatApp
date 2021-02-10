@@ -27,7 +27,8 @@ import ChatMessage from "./components/TheMessageComponent.js";
             messages: [],
             users:[],
             username: "",
-            socketID: ""
+            socketID: "",
+            isTyping: false
         },
         updated: function(){
             let messageBoard = document.querySelector('.message-board');
@@ -37,11 +38,21 @@ import ChatMessage from "./components/TheMessageComponent.js";
         methods: {
             dispatchMessage() {
                 socket.emit('chatmessage', { content: this.message, name: this.username });
-                //event.target.firstChild.focus();
             },
+
             setUser(sID){
                 this.username = myStorage.getItem('username') || 'Anonymous';
                 socket.emit('userJoin', { sID: this.socketID, name: this.username });
+            },
+
+            typing(){
+                if(event.target.value){}
+                    socket.emit('typing', this.username);
+            },
+
+            showTyping(username){
+                this.isTyping = this.isTyping ? false : true;
+                console.log(`${username} is typing`, this.isTyping);
             }
         },
 
@@ -54,5 +65,6 @@ import ChatMessage from "./components/TheMessageComponent.js";
     socket.addEventListener('connected', setUserId);
     socket.addEventListener('message', appendMesage);
     socket.addEventListener('pushUsers', updateUsers);
+    socket.addEventListener('typing', vm.showTyping);
 
 })();

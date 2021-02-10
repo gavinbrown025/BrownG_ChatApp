@@ -38,14 +38,13 @@ io.on('connection', socket => {
         io.emit('pushUsers', users);
     });
 
-    socket.on('chatmessage', function (msg) {
+    socket.on('chatmessage', msg => {
         io.emit('message', { id:socket.id, message:msg.content, name:msg.name, time:moment().format('h:mm a') });
     });
-//!___________________________________________
-socket.on('typing', () => {
-    socket.broadcast.emit('typing', {  });
-});
-//!___________________________________________
+
+    socket.on('typing', username => {
+        socket.broadcast.emit('typing', username);
+    });
 
     socket.on('disconnect', () => {
         let thisUser = users.filter(user => user.sID == socket.id);
