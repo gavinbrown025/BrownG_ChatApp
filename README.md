@@ -1,4 +1,4 @@
-<img src="public/images/onyxlogo.png" alt="ONYX Logo">
+<img src="public/images/onyxlogo.png" width="300px" alt="ONYX Logo">
 
 # ONYX Chat App
 <a href="https://rocktalk.herokuapp.com/">Go To App</a>
