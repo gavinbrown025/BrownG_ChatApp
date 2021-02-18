@@ -1,7 +1,7 @@
 <img src="public/images/onyxlogo.png" width="300px" alt="ONYX Logo">
 
-# ONYX Chat App
-<a href="https://rocktalk.herokuapp.com/">Go To App</a>
+
+<a href="https://rocktalk.herokuapp.com/"># ONYX Chat App</a>
 
 ## Chat with anyone online live
 Login under a name or stay anonymous and chat with who ever else is there. In the users Panel you can see who else is in the chat.
