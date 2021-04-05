@@ -1,113 +1,137 @@
-.chat-con{
-    background: $grey;
-    border-radius: $rad;
-    width: 66%;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+.chat-con {
+	background: $grey;
+	border-radius: $rad;
+	width: 66%;
+	min-height: 80vh;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
 
-    p{margin: .25em;}
+	p {
+		margin: 0.25em;
+	}
 }
 
-.chat-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1em;
-    a{color: $highlight; font-size:1em;}
+.chat-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 1em;
+	a {
+		color: $highlight;
+		font-size: 1em;
+	}
 }
 
-.main-chat{
-    flex-grow: 1;
-    max-height: 63vh;
-    padding: 0 1em;
-    display: flex;
-    flex-direction: row;
-    border-radius: $rad;
-    overflow: hidden;
+.main-chat {
+	flex-grow: 1;
+	max-height: 63vh;
+	padding: 0 1em;
+	display: flex;
+	flex-direction: row;
+	border-radius: $rad;
+	overflow: hidden;
 
-    .chat-info{
-        color: $black;
-        background: $lowlight;
-        flex-shrink: 0;
-        width: 30%;
-        min-width: 120px;
-        max-width: 200px;
-        h3{
-            padding: .5em;
-            background-color: $highlight;
-            font-weight: bold;
-        }
-        ul li{
-            padding: .25em .5em;
-            &:first-of-type{padding-top:.5em;}
-        }
-        p{margin:0; padding: .5em;}
-    }
+	.chat-info {
+		color: $black;
+		background: $lowlight;
+		flex-shrink: 0;
+		width: 30%;
+		min-width: 120px;
+		max-width: 200px;
+		h3 {
+			padding: 0.5em;
+			background-color: $highlight;
+			font-weight: bold;
+		}
+		ul li {
+			padding: 0.25em 0.5em;
+			&:first-of-type {
+				padding-top: 0.5em;
+			}
+		}
+		p {
+			margin: 0;
+			padding: 0.5em;
+		}
+	}
 
-    .message-board{
-        background: $white;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        overflow-y: scroll;
-        position: relative;
+	.message-board {
+		background: $white;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		overflow-y: scroll;
+		position: relative;
 
-        .new-message{
-            align-self: flex-start;
-            max-width: 80%;
-            color: $black;
-            border-radius: $rad;
-            padding: .5em;
-            margin: .5em;
-            background:$highlight;
-            box-shadow: $shadow;
-            p{display: block; font-weight: bold;}
+		.new-message {
+			align-self: flex-start;
+			max-width: 80%;
+			color: $black;
+			border-radius: $rad;
+			padding: 0.5em;
+			margin: 0.5em;
+			background: $highlight;
+			box-shadow: $shadow;
+			p {
+				display: block;
+				font-weight: bold;
+			}
 
-            &.my-message{background: $lowlight; align-self: flex-end;}
+			&.my-message {
+				background: $lowlight;
+				align-self: flex-end;
+			}
 
-            .meta,.time{font-weight: lighter; font-size: 1em;}
-            .time{float: right;}
-        }
-        .is-typing{
-            display: none;
-            background:$black;
-            color:$white;
-            border-radius: $rad;
-            padding: .5em;
-            justify-content: flex-end;
-            align-items: center;
-            position: absolute;
-            bottom: .5em;
-            right: .5em;
-            &.showFlex{display: flex;}
-        }
-    }
+			.meta,
+			.time {
+				font-weight: lighter;
+				font-size: 1em;
+			}
+			.time {
+				float: right;
+			}
+		}
+		.is-typing {
+			display: none;
+			background: $black;
+			color: $white;
+			border-radius: $rad;
+			padding: 0.5em;
+			justify-content: flex-end;
+			align-items: center;
+			position: absolute;
+			bottom: 0.5em;
+			right: 0.5em;
+			&.showFlex {
+				display: flex;
+			}
+		}
+	}
 }
 
+#chat-form {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 1em;
 
-#chat-form{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 1em;
+	input {
+		flex-grow: 1;
+		min-width: 150px;
+		border: solid 2px rgb(200, 200, 200);
+		border-radius: $rad;
+		padding: 0.5em;
+	}
 
-    input{
-        flex-grow: 1;
-        min-width: 150px;
-        border: solid 2px rgb(200, 200, 200);
-        border-radius: $rad;
-        padding: .5em;
-    }
-
-    .chat-btn{
-        width: 80px;
-        height: 2.5em;
-    }
+	.chat-btn {
+		width: 80px;
+		height: 2.5em;
+	}
 }
 
-
-@media screen and (max-width:768px){
-    .chat-con{width:98%;}
+@media screen and (max-width: 768px) {
+	.chat-con {
+		width: 95%;
+	}
 }
