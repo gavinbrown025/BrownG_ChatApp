@@ -46,7 +46,15 @@
             </div>
 
             <form @submit.prevent="dispatchMessage" id="chat-form" action="">
-                <input @focus="typing" @blur="typing" v-model="message" id="msg" type="text" placeholder="enter message" autocomplete="off" required />
+                <input
+                    id="msg"
+                    @focus="typing"
+                    @blur="typing"
+                    v-model="message"
+                    type="text"
+                    placeholder="enter message"
+                    autocomplete="off"
+                    required />
                 <button class="chat-btn" href="chat.html" type="submit">Send</button>
             </form>
 

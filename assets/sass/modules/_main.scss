@@ -1,44 +1,57 @@
 body {
-    color: $white;
-    font-family:$header-font;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: url(../images/background.jpg) no-repeat;
+	color: $white;
+	font-family: $header-font;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: url(../images/onyxbg.png) no-repeat;
+	background-size: cover;
 }
 
 main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: $header-font;
+	color: $white;
 }
 
-a {color:$black;}
+a {
+	color: $black;
+}
 
-h1,h2 { font-size: $header-size;}
+h1,
+h2 {
+	font-size: $header-size;
+}
 
-p{font-size: $text-size; font-family: $text-font;}
+p {
+	font-size: $text-size;
+	font-family: $text-font;
+}
 
 input {
-    font-size: 1.2em;
-    font-family: $text-font;
-    border-radius: $rad;
-    &:focus{outline: none;}
+	font-size: 1.2em;
+	font-family: $text-font;
+	border-radius: $rad;
+	&:focus {
+		outline: none;
+	}
 }
 
-button{  //! reset
-    font-size:100%;
-    font-family:inherit;
-    border:none;
-    padding:0;
+button {
+	//! reset
+	font-size: 100%;
+	font-family: inherit;
+	border: none;
+	padding: 0;
 }
 
-.logo {height:4rem;}
-
-
-
+.logo {
+	height: 4rem;
+}
